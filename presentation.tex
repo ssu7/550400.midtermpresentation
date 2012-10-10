@@ -6,8 +6,8 @@
 \let\olditem\item
 \renewcommand{\item}{\setlength{\itemsep}{0.5\baselineskip}\olditem}
 
-\usetheme{Singapore}
-\usecolortheme{lily}
+\usetheme{berlin}
+\usecolortheme{beaver}
 \usefonttheme[onlymath]{serif}
 
 \usepackage{float}
@@ -40,17 +40,17 @@
 \setbeamertemplate{footline}[frame number]
 \beamertemplateshadingbackground{blue!5}{yellow!10}
 
-\title{{\color{blue} \LARGE 550.400: Mathematical Modeling and Consulting\newline} }
+\title{{\color{black} \LARGE Modeling and Simulating Fan Participation at Large Scale Sporting Events\newline} }
 
-\subtitle{{\color{red} \large Lecture Notes} }
+\subtitle{{\color{blue} \large Midterm Presentation} }
 
 \author{ 
 %    \vspace{5pt}
-    {\bf{Instructor:}} \\ 
-Dr.~N.~H.~Lee \\ 
+    {\bf{Presenter:}} \\ 
+Steven Su \\ 
     \vspace{5pt}
 } 
-\institute{JHU AMS 2012 FALL}
+\institute{JHU AMS 550.400 Fall 2012}
 
 \date{\mygreen Last Complied on \today} 
 
@@ -61,45 +61,96 @@ Dr.~N.~H.~Lee \\
 \end{frame}
 
 \begin{frame}
-    \frametitle{Outline}
+    \frametitle{Overview}
     \tableofcontents
 \end{frame}
 
-\section{Preliminaries}
+\section{Introduction}
+
+\subsection{Participants and Sponsors}
 
 \begin{frame}
-    \frametitle{Example: Insurance Redlining}
-    Frequently Recurring Elements of doing a Project in Industry:
-    \vspace{7pt}
-             \begin{enumerate}
-                 \item Work Statement
-                 \item Midterm Presentation
-                 \item Progress Report
-                 \item Final Presentation
-                 \item Final Report
-             \end{enumerate}
+	\frametitle{Participants and Sponsors}
+	\begin {itemize}
+		\item Student participants:
+			\begin {itemize}
+				\item Steven Su
+				\item Danni Tang
+				\item Ahmed Aly
+			\end {itemize}
+		\item Sponsor: Blue Jays Unlimited	
+	\end {itemize}
+\end{frame}
+
+\subsection{Sponsor Information}
+
+\begin{frame}
+    \frametitle{Who are Blue Jays Unlimited?}
+    \begin {columns}
+    	\begin{column}{0.5\textwidth}
+    		\begin {itemize}
+    			\item Blue Jays Unlimited (BJU) was established in 1995
+    			\item Volunteer group of over 3000 alumni, friends and staff, based in Baltimore, MD, dedicated to supporting and promoting Johns Hopkins University (JHU) athletics
+    			\item Official booster club for JHU athletics
+    		\end {itemize}
+    	\end {column}
+    	\begin {column}{0.5\textwidth}
+    		\begin{center}
+    			\includegraphics [width=2in] {BJU.jpg}
+    		\end{center}
+    	\end {column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Programmings in this class}
-    \begin{enumerate}
-        \item \LaTeX: 
-            \begin{enumerate}
-                \item \texttt{moderncv}
-                \item \texttt{beamer}
-                \item \texttt{article}
-                \item \texttt{tikz}
-            \end{enumerate}
-        \item R:
-            \begin{enumerate}
-                \item \texttt{tikzDevice}
-                \item \texttt{lm}
-            \end{enumerate}
-        \item Git
-            \begin{enumerate}
-                \item \texttt{git init .}
-            \end{enumerate}
-    \end{enumerate}
+	\frametitle{What Does BJU do for Hopkins?}
+	\begin {columns}
+		\begin {column} {0.5\textwidth}
+			\begin {itemize}
+				\item Raised more than \$4 million in funds to improve experience for JHU student athletes and fans alike
+				\item Funds provide money for capital projects as well as scholarships and operational endowments
+				\item Past projects include:
+				\begin{itemize}
+					\item Renovation of the Newton H.~ White Athletic Center
+					\item Renovation of locker rooms
+					\item Recognition banners for championship teams
+				\end{itemize}
+			\end {itemize}
+		\end {column}
+		\begin{column} {0.5\textwidth}
+			\begin{center}
+				\includegraphics [width=2in] {AthleticCenter.jpg}
+			\end{center}
+		\end {column}
+	\end {columns}
+\end {frame}   
+
+\begin{frame}
+    \frametitle{BJU at Sporting Events}
+    \begin{itemize}
+    	\item BJU is present at nearly all major JHU sporting events
+    	\item Encourage fans to cheer on their Blue Jays to victory in a vociferous and family-friendly manner
+    	\item BJU's goal is to provide Hopkins' teams with the ultimate advantage: a spirited home crowd
+    \end{itemize}
+\end{frame}
+
+\subsection{Problem Statement}
+
+\begin{frame}
+	\frametitle{Problem Statement Background}
+		\begin{itemize}
+			\item A loud and supportive home crowd is the ultimate hometeam advantage to any collegiate sports team 
+			\item Fan participation in events such as chanting the school fight song, waving a rally towel, doing the wave,or general applause, show support for the home team as well as enhance the general atmosphere of a sporting event 
+			\item We will hence refer to all these activities as ``cheering''
+		\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Problem Statement Continued}
+		\begin {itemize}
+			BJU is interested in maximizing cheering at Homewood Field located on the Homewood campus of JHU in Balitmore, MD.
+			More specifically, they believe that they can increase cheering by placing ``cheer starters'' in the home crowd.
+		\end {itemize}
 \end{frame}
 
 \section{Principles}
