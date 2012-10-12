@@ -11,7 +11,7 @@
 \usefonttheme[onlymath]{serif}
 
 \usepackage{float}
-\floatstyle{boxed}
+%\floatstyle{boxed}
 \usepackage{colortbl}
 \usepackage{mathpazo}
 \usepackage{graphicx}
@@ -19,9 +19,9 @@
 \usepackage{bm}
 \usepackage{verbatim}
 \usepackage{comment}
-\usepackage{caption}
+\usepackage [font=small, labelfont=bf]{caption}
 \usepackage{subcaption}
-\captionsetup[subfigure]{labelformat=empty}
+%\captionsetup[subfigure]{labelformat=empty}
 \captionsetup[figure]{labelformat=empty}
 
 \newcommand{\mygreen}{\color{green!50!black}}
@@ -95,9 +95,12 @@ Steven Su \\
     		\end {itemize}
     	\end {column}
     	\begin {column}{0.5\textwidth}
+    	\begin{figure} [h]
     		\begin{center}
     			\includegraphics [width=2in] {BJU.jpg}
+    			\caption {{\scriptsize The logo of Blue Jays Unilimited. \textit{Courtesy of: http://www.hopkinssports.com/bluejays-unlimited/}}}
     		\end{center}
+    	\end {figure}	
     	\end {column}
     \end{columns}
 \end{frame}
@@ -118,9 +121,12 @@ Steven Su \\
 			\end {itemize}
 		\end {column}
 		\begin{column} {0.5\textwidth}
+			\begin{figure}
 			\begin{center}
 				\includegraphics [width=2in] {AthleticCenter.jpg}
+				\caption{{\scriptsize The Newton H.~ White Athletic Center after renovations. \textit{Courtesy of: ADD WEBSITE}}}
 			\end{center}
+			\end {figure}
 		\end {column}
 	\end {columns}
 \end {frame}   
@@ -175,9 +181,12 @@ Steven Su \\
 				\end {itemize}
 			\end {column}
 			\begin {column}{0.5\textwidth}
+			\begin {figure}
 				\begin{center}
     			\includegraphics [width=2in] {BJU.jpg}
+    			\caption {{\tiny A satellite image of Homewood Field. \textit{Courtesy of: ADD WEBSITE}}}
     		\end{center}
+    	\end{figure}	
 			\end {column}
 		\end {columns}
 \end{frame}
@@ -200,8 +209,9 @@ Steven Su \\
 \begin {frame}
 	\frametitle {Overview of Entire Model}
 	\begin{itemize}
-		\item Will create a model of a single fan and use this to simulate a large crowd.
+		\item Two models will be created: single fan model and multi-fan model
 		\item Single fan model will be stochastic in nature and will determine if a single fan starts to cheer
+		\item Multi-fan model will use the single fan model to simulate a large crowd of fans
 	\end{itemize}
 \end {frame}
 
@@ -210,10 +220,11 @@ Steven Su \\
 \begin {frame}
 	\frametitle {A Model for a Single Fan: General Parameters}
 	\begin{itemize}
-		\item Stochastic model will use serveral parameters to determine whether a fan will participate in cheering
+		\item Stochastic model will use serveral parameters/variables to calculate a \emph{cheering metric} which determines whether a fan will participate in cheering
 		\begin{itemize}
 			\item Fan's innate level of support of the team
 			\item Number of fans around a given fan who are cheering
+			\item Threshold of cheering 
 		\end{itemize}
 	\end {itemize}
 \end {frame}
@@ -223,26 +234,154 @@ Steven Su \\
 	\begin{itemize}
 		\item The greater the level of support a fan has for a team, the more likely he/she will cheer his/her team on.
 		\item Model for single fan is stochastic in that the support level for the team will be randomized between fans
-		\begin{itemize}
-			\item Currently thinking of using a Normal Distribution (a bell curve) to randomly assign a score to represent a fan's innate support level.
-			\item The majority of fans are average fans who go to games because they like the team. There are less fans which are fanatics for the team and less spectators who show up for the sporting event who don't care for the team.	
-		\end{itemize}
 		\item This more accurately reflects reality where different fans can have different levels of support for the same team.
 	\end{itemize}
 \end {frame}
 
+\begin{frame}
+	\frametitle{A Model for a Single Fan: Fan's Innate Level of Support for Team}
+	\begin {columns}
+		\begin {column} {0.5\textwidth}
+			\begin{itemize}
+				\item Currently thinking of using a Normal Distribution (a bell curve) to randomly assign a score to represent a fan's innate support level.
+				\item The majority of fans who go to sporting events are average fans who go to games because they like the team. A smaller proportion of fans spectators at sporting events are are fanatics for the team or spectators who don't care for the team.
+			\end{itemize}
+		\end {column}
+		\begin {column} {0.5\textwidth}
+		\begin{figure}
+		\begin{center}
+			\includegraphics [width=2in] {NormDistribution.jpg}
+			\caption{{\scriptsize MATLAB plot of a normal distribution with a mean of 5 and a standard deviation of 1.}}
+		\end{center}
+		\end{figure}
+		\end {column}
+	\end {columns}	
+\end{frame}
 
 \begin {frame}
-	\frametitle {A Model for a Single Fan: Number of Fans Surrounding a Fan}
+	\frametitle {A Model for a Single Fan: Number of Fans Surrounding a Fan Who Are Cheering}
 		\begin{itemize}
 			\item The more people surrounding a fan who are cheering, the more likely the fan is likely to join the cheering.
-			\item Will scale fan's innate support level score by number of surrounding fans who are cheering
-			\item If total score exceeds pre-specified threshold, the fan will begin to cheer
+			\item Will scale a given fan's innate support level score by the number of adjacent fans around the given fan who are cheering
 		\end {itemize}
 \end {frame}
 
+\begin {frame}
+	\frametitle {A Model for a Single Fan: Cheering Metric ($C_{Total}$) and Cheering Threshold ($C_{Threshold}$)}
+	\begin{itemize}
+		\item Considering to define $C_{Total}$ as follows: \newline
+	\end {itemize}
+	$$C_{Total} = (Innate\ Support\ Level)(Number\ of\ Adjacent\ Fans\ Who\ are\ Cheering)$$
+	\begin{itemize}
+		\item The following condition must be satisfied for start cheering:\newline
+	\end {itemize}	
+	$$C_{Total}>C_{Threshold}$$
+	\begin{itemize}
+		\item $C_{Threshold}$ is an arbitrary predefined parameter
+	\end {itemize}
+\end {frame}
 
-	
+
+\subsection{Multi Fan Model}
+
+\begin{frame}
+\frametitle {Multi Fan Model: Matrix Representation of a Crowd}
+	\begin {itemize}
+		\item Considering the use of matrices to represent a large crowd of fans
+		\item Each element in a matrix will represent a fan
+		\item One matrix will store each fan's $C_{Total}$ value
+		\item A second matrix will store each fan's innate support score
+		\item A third matrix will keep track of which of the fans in the crowd are cheering and which fans have yet to start cheering 
+		\item Matrix will be long and rectangular to reflect the spatial arrangement of the home team bleachers at Homewood Field
+		\item Due to computatational limits, we will downscale the home team bleachers at Homewood Field and model a home crowd of 100-1000
+	\end{itemize}		
+\end{frame}
+
+\begin{frame}
+\frametitle{Multi Fan Model: Simulation of Time (Cycling)}
+To simulate the passing of time:
+	\begin {enumerate}
+		\item Setup matrices with appropriate initial conditions. (i.e. randomly assign innate support levels to each fan and choose quantity and location of cheer starters)
+		\item Check to see if any new fans join cheering
+		\item Update matrices
+		\item Repeat for 10 cycles
+	\begin {itemize}
+		\item Each cycle will represent the passing of 3-5 seconds
+		\item We will assume that once a fan starts cheering, he/she will continue cheering until the end of the simulation
+	\end{itemize}
+	\end {enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Multi Fan Model: Determining if Cheer Starters Increase Cheering}
+\begin{itemize}
+	\item Will repeatedly run the previosly described simulation (Monte Carlo Simulation) and get an average percentage of fan participation in cheering for a given cheer starter setup
+	\item Compare this to simulation results with no cheer starters
+	\item If time permits, will try these Monte Carlo simulations for various cheer starter setups and attempt to identify any patterns in setups which maximize cheering 
+\end{itemize}
+\end{frame}
+
+\section {Deliverables and Timeline}
+
+\subsection{Deliverables}
+
+\begin{frame}
+	\frametitle{Deliverables}
+	The model will be coded on MATLAB R2009b. All compuations will be performed on a Intel Core i7 Desktop PC.
+	From Team to Sponsor:
+	\begin {itemize}
+	\item MATLAB R2009b package with a complete set of documentation along with some test scripts that can be used to reproduce our numerical and simulation test results
+	\item If time permits, a list of patterns of cheer starter setups (i.e.~ the number of cheer starters and location of them) that maximize fan cheering
+	\item Technical report and presentations summarizing the work
+	\end{itemize}
+	From Sponsor to Team:
+	\begin{itemize}
+		\item Timely responses to inquiries
+	\end{itemize}
+\end{frame}
+
+\subsection{Timeline}
+
+\begin{frame}
+	\frametitle{Timeline of Milestones}
+	\begin{itemize}
+    \item Work Statement due date, Sep 28, 2012.
+    \item Midterm Presentation due date, Oct 17, 2012.
+    \item Progress Report due date, Oct 26, 2012.
+    \item Final Presentation due date, Nov 16, 2012.
+    \item Final Report due date, Nov 30, 2012.
+	\end{itemize}
+\end{frame}
+
+\section{Conclusion}
+
+\subsection{Work Remaining to Be Done}
+
+\begin{frame}
+	\frametitle{Remaining Work}
+	\begin {itemize}
+		\item Begin coding the model in MATLAB.
+		\item Run simulations using the model.
+		\item Time permitting, try to find patterns in cheer starter setups which maximize cheering.
+\end{frame}
+
+\subsection{Recommendations for Future Research}
+
+\begin{frame}
+	\frametitle {Recommendations for Future Research}
+	\begin {itemize}
+		\item 
+	\end {itemize}
+\end{frame}
+
+%\subsection{Deliverables From Sponsor to Team}
+%
+%\begin{frame}
+%	\frametitle{Deliverables From Sponsor to Team}
+%	\begin{itemize}
+%		\item Timel
+%	\end{itemize}
+%\end{frame}
 
 %\section{Principles}
 %\begin{frame}
